@@ -1,24 +1,24 @@
 package com.example.HistoryAndLogsModule.dto;
 
 import com.example.HistoryAndLogsModule.ServiceType;
-import com.example.QuantityandInventoryModule.entity.VehicleInventory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ServiceHistoryDto {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    //foreign key
-    private VehicleInventory vehicle;
+    //foreign key--vehicle inventory
+    private Long vehicle;
     @NotBlank
     @Column(nullable = false)
     private LocalDate service_date;
