@@ -31,8 +31,10 @@ public class ServiceHistory {
      private String remarks;
      private LocalDate created_at;
      @CreatedBy
-     private String created_by;
+     private Long created_by;
      private LocalDateTime last_modified_at;
      @LastModifiedBy
-     private String last_modified_by;
+     private Long last_modified_by;
+    @Column(name = "deleted", nullable = false)
+    private boolean deleted;
 }

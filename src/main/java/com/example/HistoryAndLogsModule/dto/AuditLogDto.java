@@ -1,7 +1,6 @@
 package com.example.HistoryAndLogsModule.dto;
 
 import com.example.HistoryAndLogsModule.Action;
-import com.example.HistoryAndLogsModule.util.Auditable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -17,29 +16,24 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuditLogDto extends Auditable {
+public class AuditLogDto {
     @NotBlank
     private String table_name;
-    @NotBlank
     private int record_id;
-    @NotBlank
-    @Enumerated(EnumType.STRING)
+
     private Action action;
     @NotBlank
     private String changed_data;
-    @NotBlank
     //foreign-key --user
     private Long performed_by;
     @NotBlank
     private String ip_address;
-    @CreationTimestamp
     @NotNull
     private LocalDateTime created_at;
     @NotNull
-    private String created_by;
-    @UpdateTimestamp
+    private Long created_by;
     @NotNull
     private LocalDateTime last_modified_at;
     @NotNull
-    private String last_modified_by;
+    private Long last_modified_by;
 }
