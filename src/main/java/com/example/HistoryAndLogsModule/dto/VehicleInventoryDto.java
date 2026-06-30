@@ -1,45 +1,44 @@
 package com.example.HistoryAndLogsModule.dto;
 
-import com.example.HistoryAndLogsModule.Action;
-import com.example.HistoryAndLogsModule.util.Auditable;
-import jakarta.persistence.*;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuditLogDto extends Auditable {
+public class VehicleInventoryDto {
+
     @NotBlank
-    private String table_name;
+    private String vin;
     @NotBlank
-    private int record_id;
+    //foreign key-producton order
+    private Long production_orders;
     @NotBlank
+    //foreign key-carModel
+    private long carModel;
+    @NotBlank
+    private String color;
     @Enumerated(EnumType.STRING)
-    private Action action;
+    private String status;
     @NotBlank
-    private String changed_data;
-    @NotBlank
-    //foreign-key --user
-    private Long performed_by;
-    @NotBlank
-    private String ip_address;
+    private LocalDate manufactured_date;
     @CreationTimestamp
-    @NotNull
     private LocalDateTime created_at;
-    @NotNull
-    private String created_by;
     @UpdateTimestamp
-    @NotNull
     private LocalDateTime last_modified_at;
-    @NotNull
+    @NotBlank
+    private String created_by;
+    @NotBlank
     private String last_modified_by;
 }

@@ -1,11 +1,15 @@
 package com.example.HistoryAndLogsModule.Entity;
 
-import com.example.APIgateway.entity.User;
+
 import com.example.HistoryAndLogsModule.Action;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.time.LocalDateTime;
 
 @Table(name="auditlog",schema = "public")
@@ -20,13 +24,15 @@ public class AuditLog {
     @Enumerated(EnumType.STRING)
     private Action action;
     private String changed_data;
-    //foreign-key
-    private User performed_by;
+    //foreign-key--user
+    private Long performed_by;
     private String ip_address;
     @CreationTimestamp
     private LocalDateTime created_at;
+    @CreatedBy
     private String created_by;
     @UpdateTimestamp
     private LocalDateTime last_modified_at;
+    @LastModifiedBy
     private String last_modified_by;
 }

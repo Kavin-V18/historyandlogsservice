@@ -17,13 +17,11 @@ public class ServiceHistoryMapper {
                 last_modified_by(serviceHistory.getLast_modified_by()).
                 created_at(serviceHistory.getCreated_at()).
                 created_by(serviceHistory.getCreated_by()).
-                id(serviceHistory.getId()).
                 cost(serviceHistory.getCost()).build();
     }
     public ServiceHistory toEntity(ServiceHistoryDto dto) {
         if (dto == null) return null;
         ServiceHistory serviceHistory = new ServiceHistory();
-        serviceHistory.setId(dto.getId());
         serviceHistory.setCost(dto.getCost());
         serviceHistory.setService_center(dto.getService_center());
         serviceHistory.setService_date(dto.getService_date());
